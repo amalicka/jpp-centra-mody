@@ -41,15 +41,16 @@ namespace Centra_mody_JPP
                     myBoard.modifyListOfMovingObj();
                     swMovingObjects.Reset();
                 }
-                if (swCentrumMody1.Elapsed.TotalSeconds > myRandom1.Next(22,27))
+
+                if (swCentrumMody1.Elapsed.TotalSeconds > myRandom1.Next(7) && swCentrumMody1.Elapsed.TotalSeconds % 2 == 0)
                 {
-                    myBoard.centrumMody1.changeColor();
+                    myBoard.centrumMody1.changeColor(0,7);//ConsoelColor ma 16 kolorow
                     swCentrumMody1.Reset();
                     czyZmienicKolorCentrumMody1 = true;
                 }
-                if (swCentrumMody2.Elapsed.TotalSeconds > myRandom2.Next(67,615))
+                if (swCentrumMody2.Elapsed.TotalSeconds > myRandom2.Next(7) && swCentrumMody2.Elapsed.TotalSeconds % 2 == 0)
                 {
-                    myBoard.centrumMody2.changeColor();
+                    myBoard.centrumMody2.changeColor(8, 15);//ConsoelColor ma 16 kolorow
                     swCentrumMody2.Reset();
                     czyZmienicKolorCentrumMody2 = true;
                 }

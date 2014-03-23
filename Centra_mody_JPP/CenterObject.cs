@@ -12,6 +12,8 @@ namespace Centra_mody_JPP
         public ConsoleColor color;
         Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
         public Random myRandom = new Random();
+
+        
         
         public CenterObject()
         {
@@ -24,13 +26,15 @@ namespace Centra_mody_JPP
             color = c;
         }
 
-        public void changeColor()
+        public void changeColor(int val1, int val2)
         {
             ConsoleColor rndmColor = new ConsoleColor();
             do
             {
-                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
+                //rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
+                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(val1, val2));
                 color = rndmColor;
+                System.Diagnostics.Debug.Write("ile kolorow: " + this.arrayOfColors.Length + "\n");//16
             } while (color == ConsoleColor.Black);
         }
 
