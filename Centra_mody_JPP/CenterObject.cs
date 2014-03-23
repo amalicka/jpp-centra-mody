@@ -13,13 +13,12 @@ namespace Centra_mody_JPP
         Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
         public Random myRandom = new Random();
 
-        
-        
         public CenterObject()
         {
             localisation = new Point();
             color = ConsoleColor.Red;
         }
+
         public CenterObject(Point loc, ConsoleColor c)
         {
             localisation = loc;
@@ -29,13 +28,9 @@ namespace Centra_mody_JPP
         public void changeColor(int val1, int val2)
         {
             ConsoleColor rndmColor = new ConsoleColor();
-            do
-            {
-                //rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
-                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(val1, val2));
-                color = rndmColor;
-                System.Diagnostics.Debug.Write("ile kolorow: " + this.arrayOfColors.Length + "\n");//16
-            } while (color == ConsoleColor.Black);
+            //rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
+            rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(val1, val2));
+            color = rndmColor;
         }
 
         public double calculateDistance(Point p)

@@ -18,11 +18,31 @@ namespace Centra_mody_JPP
         private Random myRandomHeight = new Random(5000);
         public Random myRandom = new Random();
 
+        //public MovingObject()
+        //{
+        //    localisation = new Point();
+        //    color = ConsoleColor.Red;
+        //    lifetime = new TimeSpan(0,0,0);
+        //    sw = System.Diagnostics.Stopwatch.StartNew();
+        //    sw.Start();
+        //}
         public MovingObject()
         {
-            localisation = new Point();
-            color = ConsoleColor.Red;
-            lifetime = new TimeSpan(0,0,0);
+            localisation = new Point(Console.WindowWidth / 2, Console.WindowHeight / 2);
+            do{
+                color = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
+            } while (color == ConsoleColor.Black);
+            lifetime = new TimeSpan(0, 0, 0, 0, 0);
+            sw = System.Diagnostics.Stopwatch.StartNew();
+            sw.Start();
+        }
+        public MovingObject(int milisec)
+        {
+            localisation = new Point(Console.WindowWidth / 2, Console.WindowHeight / 2);
+            do{
+                color = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
+            } while (color == ConsoleColor.Black);
+            lifetime = new TimeSpan(0, 0, 0, 0, milisec);
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
         }
@@ -34,15 +54,6 @@ namespace Centra_mody_JPP
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
         }
-
-        public MovingObject generateObj()
-        {
-            int rndmMilisec = myRandom.Next(5000);
-            ConsoleColor rndmColor = new ConsoleColor();
-            rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
-            return new MovingObject(new Point(Console.WindowWidth/2, Console.WindowHeight / 2), rndmColor, rndmMilisec);
-        }
-
         public void wypisz()
         {
             Console.WriteLine("x: "+localisation.x + " y: " + localisation.y +"\t" + color);
@@ -63,7 +74,8 @@ namespace Centra_mody_JPP
         public void move(int p)
         {
             Random myRandom = new Random(p);
-            int direction = (int)myRandom.Next(0, 800)%4;
+            //int direction = (int)myRandom.Next(0, 800)%4;
+            int direction = (int)myRandom.Next(4);
             //0-up, 1-right, 2-down, 3-left
             switch(direction)
             {

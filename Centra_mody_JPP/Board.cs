@@ -13,8 +13,6 @@ namespace Centra_mody_JPP
         public CenterObject centrumMody2 { get; set; }
         public Random myRandom = new Random();
         public TimeSpan timer { get; set; }
-        //public Array arrayOfColors = Enum.GetValues(typeof(Color));
-        
 
         public Board()
         {
@@ -23,9 +21,8 @@ namespace Centra_mody_JPP
             centrumMody1 = new CenterObject(new Point(tmpWidth, Console.WindowHeight / 2), ConsoleColor.Red);
             centrumMody2 = new CenterObject(new Point(Console.WindowWidth - tmpWidth, Console.WindowHeight / 2), ConsoleColor.Yellow);
             timer = new TimeSpan();
-            this.generateListOfMovingObj(10);
+            this.generateListOfMovingObj(100);
         }
-
         public void wypiszLokalizacje()
         {
             Console.WriteLine("Lokalizacja centrum mody 1:\t" + centrumMody1.localisation.x + "\t"+ centrumMody1.localisation.y );
@@ -33,7 +30,6 @@ namespace Centra_mody_JPP
             foreach (MovingObject ob in movingObjList)
                 ob.wypisz();
         }
-
         public void wypiszLokalizacjeWlogach()
         {
             System.Diagnostics.Debug.Write("Lokalizacja centrum mody 1:\t" + centrumMody1.localisation.x + "\t" + centrumMody1.localisation.y +"\n");
@@ -41,33 +37,29 @@ namespace Centra_mody_JPP
             foreach (MovingObject ob in movingObjList)
                 ob.wypiszWlogach();
         }
-
         public void narysuj()
         {
+            policzKolkaWobuKolorach();
             Console.SetCursorPosition(centrumMody1.localisation.x, centrumMody1.localisation.y);
             Console.ForegroundColor = centrumMody1.color;
-            Console.WriteLine("o");
+            Console.WriteLine((char)64);
             Console.SetCursorPosition(centrumMody2.localisation.x, centrumMody2.localisation.y);
             Console.ForegroundColor = centrumMody2.color;
-            Console.WriteLine("oo");
+            Console.WriteLine((char)64);
             foreach (MovingObject element in movingObjList)
             {
                 Console.SetCursorPosition(element.localisation.x, element.localisation.y);
                 Console.ForegroundColor = element.color;
-                Console.WriteLine("*");
+                Console.WriteLine("o");
             }
         }
-
         public void generateListOfMovingObj(int numberOfObjects)
         {
-            MovingObject objToAdd = new MovingObject();
             for (int i = 0; i < numberOfObjects; i++)
             {
-                objToAdd = objToAdd.generateObj();
-                movingObjList.Add(objToAdd);
+                movingObjList.Add(new MovingObject(myRandom.Next(700)));
             }
         }
-
         public MovingObject chooseObjectToEliminate()
         {
             int index = 0;
@@ -78,15 +70,13 @@ namespace Centra_mody_JPP
             }
             return movingObjList[index];
         }
-
         public void modifyListOfMovingObj(TimeSpan timeFromStart)
         {
              //DODAWANIE i USUWANIE
             MovingObject objToAdd = new MovingObject();
             if(myRandom.Next(0,800) % 2 == 0)
             {
-                objToAdd = objToAdd.generateObj();
-                movingObjList.Add(objToAdd);
+                movingObjList.Add(new MovingObject());
             }
             else 
             {
@@ -114,5 +104,21 @@ namespace Centra_mody_JPP
             }
             wypiszLokalizacjeWlogach();
         }
+        public void policzKolkaWobuKolorach()
+        {
+            int sum1 = 0;
+            int sum2 = 0;
+            foreach (MovingObject element in movingObjList)
+            {
+                if (element.color == centrumMody1.color)
+                    sum1++;
+                else
+                    sum2++;
+            }
+            Console.SetCursorPosition(0,0);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("CM1: " + sum1 + "\nCM2: " + sum2);
+        }
+
     }
 }
