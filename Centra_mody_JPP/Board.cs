@@ -39,7 +39,7 @@ namespace Centra_mody_JPP
         }
         public void narysuj()
         {
-            policzKolkaWobuKolorach();
+            
             Console.SetCursorPosition(centrumMody1.localisation.x, centrumMody1.localisation.y);
             Console.ForegroundColor = centrumMody1.color;
             Console.WriteLine((char)64);
@@ -52,6 +52,7 @@ namespace Centra_mody_JPP
                 Console.ForegroundColor = element.color;
                 Console.WriteLine("o");
             }
+            policzKolkaWobuKolorach();
         }
         public void generateListOfMovingObj(int numberOfObjects)
         {
@@ -110,9 +111,9 @@ namespace Centra_mody_JPP
             int sum2 = 0;
             foreach (MovingObject element in movingObjList)
             {
-                if (element.color == centrumMody1.color)
+                if(element.color == centrumMody1.color)
                     sum1++;
-                else
+                else if(element.color == centrumMody2.color)
                     sum2++;
             }
             Console.SetCursorPosition(0,0);
