@@ -26,20 +26,21 @@ namespace Centra_mody_JPP
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
         }
-        public MovingObject(Point loc, ConsoleColor c)
+        public MovingObject(Point loc, ConsoleColor c, int milisec)
         {
             localisation = loc;
             color = c;
-            lifetime = new TimeSpan(0, 0, 0);
+            lifetime = new TimeSpan(0,0,0,0, milisec);
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
         }
 
         public MovingObject generateObj()
         {
+            int rndmMilisec = myRandom.Next(5000);
             ConsoleColor rndmColor = new ConsoleColor();
             rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
-            return new MovingObject(new Point(Console.WindowWidth/2, Console.WindowHeight / 2), rndmColor);
+            return new MovingObject(new Point(Console.WindowWidth/2, Console.WindowHeight / 2), rndmColor, rndmMilisec);
         }
 
         public void wypisz()

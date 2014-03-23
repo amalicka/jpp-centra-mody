@@ -71,9 +71,6 @@ namespace Centra_mody_JPP
         public void modifyListOfMovingObj(TimeSpan timeFromStart)
         {
             int indexElToRemove = (int)myRandom.Next(0, movingObjList.Count);
-
-
-
             Random randomToChoseColor = new Random();
             foreach (MovingObject element in movingObjList)
             {
