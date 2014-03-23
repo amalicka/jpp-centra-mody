@@ -12,6 +12,7 @@ namespace Centra_mody_JPP
         public Point localisation { get; set; }
         public ConsoleColor color { get; set;}
         public System.Diagnostics.Stopwatch sw { get; set; }
+        public TimeSpan lifetime {get; set;}
         public Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
         private Random myRandomWidth = new Random(100);
         private Random myRandomHeight = new Random(5000);
@@ -21,13 +22,17 @@ namespace Centra_mody_JPP
         {
             localisation = new Point();
             color = ConsoleColor.Red;
+            lifetime = new TimeSpan(0,0,0);
             sw = System.Diagnostics.Stopwatch.StartNew();
+            sw.Start();
         }
         public MovingObject(Point loc, ConsoleColor c)
         {
             localisation = loc;
             color = c;
+            lifetime = new TimeSpan(0, 0, 0);
             sw = System.Diagnostics.Stopwatch.StartNew();
+            sw.Start();
         }
 
         public MovingObject generateObj()
@@ -44,7 +49,7 @@ namespace Centra_mody_JPP
 
         public void wypiszWlogach()
         {
-            System.Diagnostics.Debug.Write("x: " + localisation.x + " \ty: " + localisation.y + "\t\n" /*+ color*/);
+            System.Diagnostics.Debug.Write("life: " + lifetime + "x: " + localisation.x + " \ty: " + localisation.y + "\t\n" /*+ color*/);
         }
 
         public double calculateDistance(Point p)
@@ -80,6 +85,10 @@ namespace Centra_mody_JPP
                 default:
                     break;
             }
+        }
+        public void actualiseLifeTime()
+        {
+            lifetime = sw.Elapsed;
         }
 
 

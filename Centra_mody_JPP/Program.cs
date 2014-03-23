@@ -16,6 +16,8 @@ namespace Centra_mody_JPP
             Random myRandom1 = new Random();
             Random myRandom2 = new Random();
 
+            System.Diagnostics.Stopwatch swMain = System.Diagnostics.Stopwatch.StartNew();
+            swMain.Start();
             System.Diagnostics.Stopwatch swMovingObjects = System.Diagnostics.Stopwatch.StartNew();
             System.Diagnostics.Stopwatch swCentrumMody1 = System.Diagnostics.Stopwatch.StartNew();
             System.Diagnostics.Stopwatch swCentrumMody2 = System.Diagnostics.Stopwatch.StartNew();
@@ -38,7 +40,7 @@ namespace Centra_mody_JPP
                     Console.Clear();
                     //Console.WriteLine(sw.Elapsed);
                     myBoard.narysuj();
-                    myBoard.modifyListOfMovingObj();
+                    myBoard.modifyListOfMovingObj(swMain.Elapsed);
                     swMovingObjects.Reset();
                 }
 

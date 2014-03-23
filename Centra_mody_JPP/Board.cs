@@ -68,13 +68,17 @@ namespace Centra_mody_JPP
             }
         }
 
-        public void modifyListOfMovingObj()
+        public void modifyListOfMovingObj(TimeSpan timeFromStart)
         {
             int indexElToRemove = (int)myRandom.Next(0, movingObjList.Count);
+
+
+
             Random randomToChoseColor = new Random();
             foreach (MovingObject element in movingObjList)
             {
                 element.move(myRandom.Next(0,500));
+                element.actualiseLifeTime();
                 double sumaOdlObiektuOdCentrowMody = element.calculateDistance(centrumMody1.localisation) + element.calculateDistance                                           (centrumMody2.localisation);
                 double odlOdCM1 = element.calculateDistance(centrumMody1.localisation);
                 double odlOdCM2 = element.calculateDistance(centrumMody2.localisation);
