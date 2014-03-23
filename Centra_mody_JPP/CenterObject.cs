@@ -24,11 +24,19 @@ namespace Centra_mody_JPP
             color = c;
         }
 
-        public void changeColor(int var)
+        public void changeColor()
         {
             ConsoleColor rndmColor = new ConsoleColor();
-            rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length/var));
-            color = rndmColor;
+            bool czyDalej = true;
+            do
+            {
+                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
+                color = rndmColor;
+                if (color == ConsoleColor.Black)
+                    czyDalej = true;
+                else
+                    czyDalej = false;
+            } while (czyDalej);
         }
     }
 }

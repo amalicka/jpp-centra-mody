@@ -49,7 +49,7 @@ namespace Centra_mody_JPP
             Console.WriteLine("o");
             Console.SetCursorPosition(centrumMody2.localisation.x, centrumMody2.localisation.y);
             Console.ForegroundColor = centrumMody2.color;
-            Console.WriteLine("o");
+            Console.WriteLine("oo");
             foreach (MovingObject element in movingObjList)
             {
                 Console.SetCursorPosition(element.localisation.x, element.localisation.y);
@@ -74,7 +74,7 @@ namespace Centra_mody_JPP
         public void modifyListOfMovingObj()
         {
             int indexElToRemove = (int)myRandom.Next(0, movingObjList.Count);
-            if (movingObjList.Count > 1)
+            if (movingObjList.Count > 4)
             {
                 if (myRandom.Next(0, DateTime.Now.Millisecond) % 2 == 0)
                     movingObjList.Remove(movingObjList.ElementAt(indexElToRemove));
@@ -94,10 +94,13 @@ namespace Centra_mody_JPP
             wypiszLokalizacjeWlogach();
         }
 
-        public void modifyCentraMody()
+        public void modifyCentrumMody1()
         {
-            centrumMody1.changeColor(2);
-            centrumMody2.changeColor(4);
+            centrumMody1.changeColor();
+        }
+        public void modifyCentrumMody2()
+        {
+            centrumMody2.changeColor();
         }
 
 
