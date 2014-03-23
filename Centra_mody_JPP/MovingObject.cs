@@ -12,7 +12,6 @@ namespace Centra_mody_JPP
         public Point localisation { get; set; }
         public ConsoleColor color { get; set;}
         public System.Diagnostics.Stopwatch sw { get; set; }
-        public Random myRandom = new Random();
 
         public MovingObject()
         {
@@ -44,8 +43,9 @@ namespace Centra_mody_JPP
             return distance;
         }
 
-        public void move()
+        public void move(int p)
         {
+            Random myRandom = new Random(p);
             int direction = (int)myRandom.Next(0, 3);
             //0-up, 1-right, 2-down, 3-left
             switch(direction)

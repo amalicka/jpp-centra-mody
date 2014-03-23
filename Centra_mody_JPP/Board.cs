@@ -12,6 +12,8 @@ namespace Centra_mody_JPP
         public CenterObject centrumMody1 { get; set; }
         public CenterObject centrumMody2 { get; set; }
         public Random myRandom = new Random();
+        public Random myRandomWidth = new Random(100);
+        public Random myRandomHeight = new Random(5000);
         public TimeSpan timer { get; set; }
         //public Array arrayOfColors = Enum.GetValues(typeof(Color));
         public Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
@@ -62,7 +64,7 @@ namespace Centra_mody_JPP
         {
             ConsoleColor rndmColor = new ConsoleColor();
             rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
-            return new MovingObject(new Point((int)myRandom.Next(0, Console.WindowWidth), (int)myRandom.Next(0,                                                   Console.WindowHeight)), rndmColor);
+            return new MovingObject(new Point((int)myRandomWidth.Next(0, Console.WindowWidth), (int)myRandomHeight.Next(0,                                                   Console.WindowHeight)), rndmColor);
         }
 
         public void generateListOfMovingObj(int numberOfObjects)
@@ -74,22 +76,22 @@ namespace Centra_mody_JPP
         public void modifyListOfMovingObj()
         {
             int indexElToRemove = (int)myRandom.Next(0, movingObjList.Count);
-            if (movingObjList.Count > 4)
+            Random randomToChoseColor = new Random();
+            foreach (MovingObject element in movingObjList)
             {
-                if (myRandom.Next(0, DateTime.Now.Millisecond) % 2 == 0)
-                    movingObjList.Remove(movingObjList.ElementAt(indexElToRemove));
-                else
-                    movingObjList.Add(this.generateObj());
+                element.move((int)myRandom.Next(0,1000));
+                double sumaOdlObiektuOdCentrowMody = element.calculateDistance(centrumMody1.localisation) + element.calculateDistance                                           (centrumMody2.localisation);
+                double odlOdCM1 = element.calculateDistance(centrumMody1.localisation);
+                double odlOdCM2 = element.calculateDistance(centrumMody2.localisation);
+                double szansa = randomToChoseColor.Next(0, 100);
+                //wyrownanie do 100
+                odlOdCM1 = (odlOdCM1 * 100) / sumaOdlObiektuOdCentrowMody;
+                odlOdCM2 = (odlOdCM2 * 100) / sumaOdlObiektuOdCentrowMody;
 
-                foreach(MovingObject element in movingObjList)
-                {
-                    element.move();
-                    //zmiana koloru zalezna od odleglosci od centrum mody
-                    if (element.calculateDistance(centrumMody1.localisation) >= element.calculateDistance(centrumMody2.localisation))
-                        element.color = centrumMody2.color;
-                    else
-                        element.color = centrumMody1.color;
-                }
+                if(szansa >= odlOdCM1)
+                    element.color = centrumMody1.color;
+                else
+                    element.color = centrumMody2.color;
             }
             wypiszLokalizacjeWlogach();
         }

@@ -38,5 +38,12 @@ namespace Centra_mody_JPP
                     czyDalej = false;
             } while (czyDalej);
         }
+
+        public double calculateDistance(Point p)
+        {
+            double distance;
+            distance = Math.Sqrt(Math.Pow(Math.Abs(p.x - localisation.x), 2) + Math.Pow(Math.Abs(p.y - localisation.y), 2));
+            return distance;
+        }
     }
 }

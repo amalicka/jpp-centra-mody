@@ -41,13 +41,13 @@ namespace Centra_mody_JPP
                     myBoard.modifyListOfMovingObj();
                     swMovingObjects.Reset();
                 }
-                if (swCentrumMody1.Elapsed.TotalMilliseconds > myRandom1.Next(1000, 5000))
+                if (swCentrumMody1.Elapsed.TotalMilliseconds > myRandom1.Next(5000, 10000))
                 {
                     myBoard.modifyCentrumMody1();
                     swCentrumMody1.Reset();
                     czyZmienicKolorCentrumMody1 = true;
                 }
-                if (swCentrumMody2.Elapsed.TotalMilliseconds > myRandom2.Next(2000,6000))
+                if (swCentrumMody2.Elapsed.TotalMilliseconds > myRandom2.Next(4000,8000))
                 {
                     myBoard.modifyCentrumMody2();
                     swCentrumMody2.Reset();
