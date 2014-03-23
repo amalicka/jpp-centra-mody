@@ -23,13 +23,7 @@ namespace Centra_mody_JPP
             timer = new TimeSpan();
             this.generateListOfMovingObj(100);
         }
-        public void wypiszLokalizacje()
-        {
-            Console.WriteLine("Lokalizacja centrum mody 1:\t" + centrumMody1.localisation.x + "\t"+ centrumMody1.localisation.y );
-            Console.WriteLine("Lokalizacja centrum mody 2:\t" + centrumMody2.localisation.x + "\t"+ centrumMody2.localisation.y );
-            foreach (MovingObject ob in movingObjList)
-                ob.wypisz();
-        }
+
         public void wypiszLokalizacjeWlogach()
         {
             System.Diagnostics.Debug.Write("Lokalizacja centrum mody 1:\t" + centrumMody1.localisation.x + "\t" + centrumMody1.localisation.y +"\n");

@@ -9,6 +9,7 @@ namespace Centra_mody_JPP
 {
     class MovingObject
     {
+        #region variables
         public Point localisation { get; set; }
         public ConsoleColor color { get; set;}
         public System.Diagnostics.Stopwatch sw { get; set; }
@@ -17,15 +18,8 @@ namespace Centra_mody_JPP
         private Random myRandomWidth = new Random(100);
         private Random myRandomHeight = new Random(5000);
         public Random myRandom = new Random();
+        #endregion
 
-        //public MovingObject()
-        //{
-        //    localisation = new Point();
-        //    color = ConsoleColor.Red;
-        //    lifetime = new TimeSpan(0,0,0);
-        //    sw = System.Diagnostics.Stopwatch.StartNew();
-        //    sw.Start();
-        //}
         public MovingObject()
         {
             localisation = new Point(Console.WindowWidth / 2, Console.WindowHeight / 2);
@@ -38,7 +32,7 @@ namespace Centra_mody_JPP
         }
         public MovingObject(int milisec)
         {
-            localisation = new Point(Console.WindowWidth / 2, Console.WindowHeight / 2);
+             localisation = new Point(myRandom.Next(Console.WindowWidth), myRandom.Next(Console.WindowHeight));
             do{
                 color = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
             } while (color == ConsoleColor.Black);
@@ -53,10 +47,6 @@ namespace Centra_mody_JPP
             lifetime = new TimeSpan(0,0,0,0, milisec);
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
-        }
-        public void wypisz()
-        {
-            Console.WriteLine("x: "+localisation.x + " y: " + localisation.y +"\t" + color);
         }
 
         public void wypiszWlogach()
@@ -88,7 +78,7 @@ namespace Centra_mody_JPP
                         localisation.x += 2;
                     break;
                 case 2:
-                    if (!(localisation.y + 2 > Console.WindowHeight))
+                    if (!(localisation.y + 3 > Console.WindowHeight))
                         localisation.y += 1;
                     break;
                 case 3:

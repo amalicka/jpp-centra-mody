@@ -65,7 +65,7 @@ namespace Centra_mody_JPP
                 myBoard.narysuj();
                 myBoard.policzKolkaWobuKolorach();
 
-                // Sleep - give computer a break :)
+                // Sleep
                 Thread.Sleep(200);
             } while (true);
         }
