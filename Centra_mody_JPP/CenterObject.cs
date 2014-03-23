@@ -25,12 +25,13 @@ namespace Centra_mody_JPP
             color = c;
         }
 
-        public void changeColor(int val1, int val2)
+        public ConsoleColor changeColor(int val1, int val2)
         {
             ConsoleColor rndmColor = new ConsoleColor();
             //rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
             rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(val1, val2));
             color = rndmColor;
+            return color;
         }
 
         public double calculateDistance(Point p)

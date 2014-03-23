@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Centra_mody_JPP
@@ -14,8 +15,7 @@ namespace Centra_mody_JPP
             Board myBoard = new Board();
             bool czyZmienicKolorCentrumMody1 = false;
             bool czyZmienicKolorCentrumMody2 = false;
-            Random myRandom1 = new Random();
-            Random myRandom2 = new Random();
+            Random myRandom = new Random();
             System.Diagnostics.Stopwatch swMain = System.Diagnostics.Stopwatch.StartNew();
             swMain.Start();
             System.Diagnostics.Stopwatch swMovingObjects = System.Diagnostics.Stopwatch.StartNew();
@@ -36,28 +36,37 @@ namespace Centra_mody_JPP
                     czyZmienicKolorCentrumMody2 = false;
                 }
 
-                if (swMovingObjects.Elapsed.TotalMilliseconds > 700)
+                if (swCentrumMody1.Elapsed.TotalSeconds > myRandom.Next(20) /*&& swCentrumMody1.Elapsed.TotalSeconds % 2 == 0*/)
                 {
-                    Console.Clear();
-                    //Console.WriteLine(sw.Elapsed);
-                    myBoard.narysuj();
-                    myBoard.modifyListOfMovingObj(swMain.Elapsed);
-                    swMovingObjects.Reset();
-                }
-
-                if (swCentrumMody1.Elapsed.TotalSeconds > myRandom1.Next(7) && swCentrumMody1.Elapsed.TotalSeconds % 2 == 0)
-                {
-                    myBoard.centrumMody1.changeColor(1,4);//ConsoelColor ma 16 kolorow
+                    ConsoleColor oldColor = myBoard.centrumMody1.color;
+                    ConsoleColor newColor = myBoard.centrumMody1.changeColor(1,4);
+                    myBoard.changeObjectColors(oldColor, newColor);
                     swCentrumMody1.Reset();
                     czyZmienicKolorCentrumMody1 = true;
                 }
-                if (swCentrumMody2.Elapsed.TotalSeconds > myRandom2.Next(7) && swCentrumMody2.Elapsed.TotalSeconds % 2 == 0)
+
+                if (swCentrumMody2.Elapsed.TotalSeconds > myRandom.Next(20) /*&& swCentrumMody2.Elapsed.TotalSeconds % 2 == 0*/)
                 {
-                    myBoard.centrumMody2.changeColor(5, 9);//ConsoelColor ma 16 kolorow
+                    ConsoleColor oldColor = myBoard.centrumMody2.color;
+                    ConsoleColor newColor = myBoard.centrumMody2.changeColor(5, 9);
+                    myBoard.changeObjectColors(oldColor, newColor);
                     swCentrumMody2.Reset();
                     czyZmienicKolorCentrumMody2 = true;
                 }
 
+                if (swMovingObjects.Elapsed.TotalMilliseconds > 700)
+                {
+                    myBoard.modifyListOfMovingObj(swMain.Elapsed);
+                    swMovingObjects.Reset();
+                }
+
+                // Render scene
+                Console.Clear();
+                myBoard.narysuj();
+                myBoard.policzKolkaWobuKolorach();
+
+                // Sleep - give computer a break :)
+                Thread.Sleep(200);
             } while (true);
         }
     }

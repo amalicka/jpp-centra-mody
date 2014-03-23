@@ -52,7 +52,6 @@ namespace Centra_mody_JPP
                 Console.ForegroundColor = element.color;
                 Console.WriteLine("o");
             }
-            policzKolkaWobuKolorach();
         }
         public void generateListOfMovingObj(int numberOfObjects)
         {
@@ -71,8 +70,18 @@ namespace Centra_mody_JPP
             }
             return movingObjList[index];
         }
+
+        public void changeObjectColors(ConsoleColor oldColor, ConsoleColor newColor)
+        {
+            foreach(MovingObject element in movingObjList)
+            {
+                if (element.color == oldColor)
+                    element.color = newColor;
+            }
+        }
         public void modifyListOfMovingObj(TimeSpan timeFromStart)
         {
+
              //DODAWANIE i USUWANIE
             MovingObject objToAdd = new MovingObject();
             if(myRandom.Next(0,800) % 2 == 0)
@@ -107,18 +116,19 @@ namespace Centra_mody_JPP
         }
         public void policzKolkaWobuKolorach()
         {
+            Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.White;
             int sum1 = 0;
             int sum2 = 0;
             foreach (MovingObject element in movingObjList)
             {
-                if(element.color == centrumMody1.color)
+                if (element.color == centrumMody1.color)
                     sum1++;
-                else if(element.color == centrumMody2.color)
+                else if (element.color == centrumMody2.color)
                     sum2++;
             }
-            Console.SetCursorPosition(0,0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("CM1: " + sum1 + "\nCM2: " + sum2);
+            Console.WriteLine("CM1: " + sum1);
+            Console.WriteLine("CM2: " + sum2);
         }
 
     }
