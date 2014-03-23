@@ -12,6 +12,10 @@ namespace Centra_mody_JPP
         public Point localisation { get; set; }
         public ConsoleColor color { get; set;}
         public System.Diagnostics.Stopwatch sw { get; set; }
+        public Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
+        private Random myRandomWidth = new Random(100);
+        private Random myRandomHeight = new Random(5000);
+        public Random myRandom = new Random();
 
         public MovingObject()
         {
@@ -24,6 +28,13 @@ namespace Centra_mody_JPP
             localisation = loc;
             color = c;
             sw = System.Diagnostics.Stopwatch.StartNew();
+        }
+
+        public MovingObject generateObj()
+        {
+            ConsoleColor rndmColor = new ConsoleColor();
+            rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
+            return new MovingObject(new Point(Console.WindowWidth/2, Console.WindowHeight / 2), rndmColor);
         }
 
         public void wypisz()
@@ -46,7 +57,7 @@ namespace Centra_mody_JPP
         public void move(int p)
         {
             Random myRandom = new Random(p);
-            int direction = (int)myRandom.Next(0, 3);
+            int direction = (int)myRandom.Next(0, 800)%4;
             //0-up, 1-right, 2-down, 3-left
             switch(direction)
             {
@@ -55,21 +66,22 @@ namespace Centra_mody_JPP
                         localisation.y -= 1;
                     break;
                 case 1:
-                    if (!(localisation.x + 2 > Console.BufferWidth))
-                        localisation.x += 1;
+                    if (!(localisation.x + 3 > Console.WindowWidth))
+                        localisation.x += 2;
                     break;
                 case 2:
-                    if (!(localisation.y + 2 > Console.BufferHeight))
+                    if (!(localisation.y + 2 > Console.WindowHeight))
                         localisation.y += 1;
                     break;
                 case 3:
-                    if (!(localisation.x - 2 < 0))
-                        localisation.x -= 1;
+                    if (!(localisation.x - 3 < 0))
+                        localisation.x -= 2;
                     break;
                 default:
                     break;
             }
         }
+
 
 
     }

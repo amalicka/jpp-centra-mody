@@ -13,8 +13,8 @@ namespace Centra_mody_JPP
             Board myBoard = new Board();
             bool czyZmienicKolorCentrumMody1 = false;
             bool czyZmienicKolorCentrumMody2 = false;
-            Random myRandom1 = new Random(1000);
-            Random myRandom2 = new Random(5);
+            Random myRandom1 = new Random();
+            Random myRandom2 = new Random();
 
             System.Diagnostics.Stopwatch swMovingObjects = System.Diagnostics.Stopwatch.StartNew();
             System.Diagnostics.Stopwatch swCentrumMody1 = System.Diagnostics.Stopwatch.StartNew();
@@ -41,22 +41,20 @@ namespace Centra_mody_JPP
                     myBoard.modifyListOfMovingObj();
                     swMovingObjects.Reset();
                 }
-                if (swCentrumMody1.Elapsed.TotalMilliseconds > myRandom1.Next(5000, 10000))
+                if (swCentrumMody1.Elapsed.TotalSeconds > myRandom1.Next(22,27))
                 {
-                    myBoard.modifyCentrumMody1();
+                    myBoard.centrumMody1.changeColor();
                     swCentrumMody1.Reset();
                     czyZmienicKolorCentrumMody1 = true;
                 }
-                if (swCentrumMody2.Elapsed.TotalMilliseconds > myRandom2.Next(4000,8000))
+                if (swCentrumMody2.Elapsed.TotalSeconds > myRandom2.Next(67,615))
                 {
-                    myBoard.modifyCentrumMody2();
+                    myBoard.centrumMody2.changeColor();
                     swCentrumMody2.Reset();
                     czyZmienicKolorCentrumMody2 = true;
                 }
 
             } while (true);
-
-            Console.ReadLine();
         }
     }
 }

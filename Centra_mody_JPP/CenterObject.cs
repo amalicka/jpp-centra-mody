@@ -27,16 +27,11 @@ namespace Centra_mody_JPP
         public void changeColor()
         {
             ConsoleColor rndmColor = new ConsoleColor();
-            bool czyDalej = true;
             do
             {
-                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
+                rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(0,this.arrayOfColors.Length));
                 color = rndmColor;
-                if (color == ConsoleColor.Black)
-                    czyDalej = true;
-                else
-                    czyDalej = false;
-            } while (czyDalej);
+            } while (color == ConsoleColor.Black);
         }
 
         public double calculateDistance(Point p)

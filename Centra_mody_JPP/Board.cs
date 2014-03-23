@@ -12,11 +12,9 @@ namespace Centra_mody_JPP
         public CenterObject centrumMody1 { get; set; }
         public CenterObject centrumMody2 { get; set; }
         public Random myRandom = new Random();
-        public Random myRandomWidth = new Random(100);
-        public Random myRandomHeight = new Random(5000);
         public TimeSpan timer { get; set; }
         //public Array arrayOfColors = Enum.GetValues(typeof(Color));
-        public Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
+        
 
         public Board()
         {
@@ -60,17 +58,14 @@ namespace Centra_mody_JPP
             }
         }
 
-        public MovingObject generateObj()
-        {
-            ConsoleColor rndmColor = new ConsoleColor();
-            rndmColor = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
-            return new MovingObject(new Point((int)myRandomWidth.Next(0, Console.WindowWidth), (int)myRandomHeight.Next(0,                                                   Console.WindowHeight)), rndmColor);
-        }
-
         public void generateListOfMovingObj(int numberOfObjects)
         {
+            MovingObject objToAdd = new MovingObject();
             for (int i = 0; i < numberOfObjects; i++)
-                movingObjList.Add(this.generateObj());   
+            {
+                objToAdd = objToAdd.generateObj();
+                movingObjList.Add(objToAdd);
+            }
         }
 
         public void modifyListOfMovingObj()
@@ -79,7 +74,7 @@ namespace Centra_mody_JPP
             Random randomToChoseColor = new Random();
             foreach (MovingObject element in movingObjList)
             {
-                element.move((int)myRandom.Next(0,1000));
+                element.move(myRandom.Next(0,500));
                 double sumaOdlObiektuOdCentrowMody = element.calculateDistance(centrumMody1.localisation) + element.calculateDistance                                           (centrumMody2.localisation);
                 double odlOdCM1 = element.calculateDistance(centrumMody1.localisation);
                 double odlOdCM2 = element.calculateDistance(centrumMody2.localisation);
@@ -87,7 +82,7 @@ namespace Centra_mody_JPP
                 //wyrownanie do 100
                 odlOdCM1 = (odlOdCM1 * 100) / sumaOdlObiektuOdCentrowMody;
                 odlOdCM2 = (odlOdCM2 * 100) / sumaOdlObiektuOdCentrowMody;
-
+                //nadanie koloru w zal od odleglosci od Centrum Mody 1 lub 2
                 if(szansa >= odlOdCM1)
                     element.color = centrumMody1.color;
                 else
@@ -95,16 +90,5 @@ namespace Centra_mody_JPP
             }
             wypiszLokalizacjeWlogach();
         }
-
-        public void modifyCentrumMody1()
-        {
-            centrumMody1.changeColor();
-        }
-        public void modifyCentrumMody2()
-        {
-            centrumMody2.changeColor();
-        }
-
-
     }
 }
