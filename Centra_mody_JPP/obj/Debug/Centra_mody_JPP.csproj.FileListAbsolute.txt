@@ -1,0 +1,6 @@
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\bin\Debug\Centra_mody_JPP.exe.config
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\bin\Debug\Centra_mody_JPP.exe
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\bin\Debug\Centra_mody_JPP.pdb
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\obj\Debug\Centra_mody_JPP.exe
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\obj\Debug\Centra_mody_JPP.pdb
+C:\Users\Aleksandra\documents\visual studio 2012\Projects\Centra_mody_JPP\Centra_mody_JPP\obj\Debug\Centra_mody_JPP.csprojResolveAssemblyReference.cache
