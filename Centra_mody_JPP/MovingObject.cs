@@ -10,13 +10,12 @@ namespace Centra_mody_JPP
     class MovingObject
     {
         #region variables
+        
         public Point localisation { get; set; }
         public ConsoleColor color { get; set;}
         public System.Diagnostics.Stopwatch sw { get; set; }
         public TimeSpan lifetime {get; set;}
         public Array arrayOfColors = Enum.GetValues(typeof(ConsoleColor));
-        private Random myRandomWidth = new Random(100);
-        private Random myRandomHeight = new Random(5000);
         public Random myRandom = new Random();
         #endregion
 
@@ -26,7 +25,7 @@ namespace Centra_mody_JPP
             do{
                 color = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
             } while (color == ConsoleColor.Black);
-            lifetime = new TimeSpan(0, 0, 0, 0, 0);
+            lifetime = new TimeSpan(0, 0, 0, 0, 800);
             sw = System.Diagnostics.Stopwatch.StartNew();
             sw.Start();
         }
@@ -94,7 +93,15 @@ namespace Centra_mody_JPP
             lifetime = sw.Elapsed;
         }
 
+        public double probabilityOfDeath()
+        {
+            double probability = (1.0 / (double)this.lifetime.Seconds) * 100;
 
-
+            if (probability > 95)
+                return 95;
+            else
+                return probability;
+            return 10;
+        }
     }
 }

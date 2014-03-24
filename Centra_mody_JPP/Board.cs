@@ -51,18 +51,8 @@ namespace Centra_mody_JPP
         {
             for (int i = 0; i < numberOfObjects; i++)
             {
-                movingObjList.Add(new MovingObject(myRandom.Next(700)));
+                movingObjList.Add(new MovingObject(myRandom.Next()));
             }
-        }
-        public MovingObject chooseObjectToEliminate()
-        {
-            int index = 0;
-            for (int i = 0; i < movingObjList.Count - 1; i++)
-            {
-                if (movingObjList[i].lifetime < movingObjList[i + 1].lifetime)
-                    index = i;
-            }
-            return movingObjList[index];
         }
 
         public void changeObjectColors(ConsoleColor oldColor, ConsoleColor newColor)
@@ -75,19 +65,25 @@ namespace Centra_mody_JPP
         }
         public void modifyListOfMovingObj(TimeSpan timeFromStart)
         {
+            int counter = 0;
+             //DODAWANIE i USUWANIE MovingObjects
+            for (int i = 0; i < movingObjList.Count; i++)
+            {
+                double czyZabic = (double)myRandom.Next(100);
+                double probab = movingObjList[i].probabilityOfDeath();
+                //System.Diagnostics.Debug.Write(movingObjList[i].probabilityOfDeath() + "\n");
+                if (czyZabic < probab && movingObjList.Count > 1)
+                {
+                    movingObjList.Remove(movingObjList[i]);
+                    counter++;
+                }
+            }
 
-             //DODAWANIE i USUWANIE
-            MovingObject objToAdd = new MovingObject();
-            if(myRandom.Next(0,800) % 2 == 0)
+            for (int i = 0; i < counter; i++)
             {
                 movingObjList.Add(new MovingObject());
             }
-            else 
-            {
-                if(movingObjList.Count > 1)
-                    movingObjList.Remove(chooseObjectToEliminate());
-            }
-
+            
             foreach (MovingObject element in movingObjList)
             {
                 element.move(myRandom.Next(0,500));

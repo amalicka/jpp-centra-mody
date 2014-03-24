@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Centra_mody_JPP
 {
     class Program
@@ -54,7 +55,7 @@ namespace Centra_mody_JPP
                     czyZmienicKolorCentrumMody2 = true;
                 }
 
-                if (swMovingObjects.Elapsed.TotalMilliseconds > 700)
+                if (swMovingObjects.Elapsed.TotalMilliseconds > 700) //co ile modyfikujemy liste obiektow
                 {
                     myBoard.modifyListOfMovingObj(swMain.Elapsed);
                     swMovingObjects.Reset();
