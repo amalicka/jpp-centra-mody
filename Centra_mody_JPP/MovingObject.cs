@@ -21,7 +21,7 @@ namespace Centra_mody_JPP
 
         public MovingObject()
         {
-            localisation = new Point(Console.WindowWidth / 2, Console.WindowHeight / 2);
+            localisation = new Point(myRandom.Next(Console.WindowWidth), myRandom.Next(Console.WindowHeight));
             do{
                 color = (ConsoleColor)this.arrayOfColors.GetValue(myRandom.Next(this.arrayOfColors.Length));
             } while (color == ConsoleColor.Black);
@@ -101,7 +101,6 @@ namespace Centra_mody_JPP
                 return 95;
             else
                 return probability;
-            return 10;
         }
     }
 }

@@ -40,5 +40,32 @@ namespace Centra_mody_JPP
             distance = Math.Sqrt(Math.Pow(Math.Abs(p.x - localisation.x), 2) + Math.Pow(Math.Abs(p.y - localisation.y), 2));
             return distance;
         }
+        public void move(int p)
+        {
+            Random myRandom = new Random(p);
+            int direction = (int)myRandom.Next(4);
+            //0-up, 1-right, 2-down, 3-left
+            switch (direction)
+            {
+                case 0:
+                    if (!(localisation.y - 2 < 0))
+                        localisation.y -= 1;
+                    break;
+                case 1:
+                    if (!(localisation.x + 3 > Console.WindowWidth))
+                        localisation.x += 2;
+                    break;
+                case 2:
+                    if (!(localisation.y + 3 > Console.WindowHeight))
+                        localisation.y += 1;
+                    break;
+                case 3:
+                    if (!(localisation.x - 3 < 0))
+                        localisation.x -= 2;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

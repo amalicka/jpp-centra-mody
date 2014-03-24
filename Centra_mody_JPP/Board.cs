@@ -33,19 +33,19 @@ namespace Centra_mody_JPP
         }
         public void narysuj()
         {
-            
+            foreach (MovingObject element in movingObjList)
+            {
+                Console.SetCursorPosition(element.localisation.x, element.localisation.y);
+                Console.ForegroundColor = element.color;
+                Console.WriteLine("o");
+            }            
             Console.SetCursorPosition(centrumMody1.localisation.x, centrumMody1.localisation.y);
             Console.ForegroundColor = centrumMody1.color;
             Console.WriteLine((char)64);
             Console.SetCursorPosition(centrumMody2.localisation.x, centrumMody2.localisation.y);
             Console.ForegroundColor = centrumMody2.color;
             Console.WriteLine((char)64);
-            foreach (MovingObject element in movingObjList)
-            {
-                Console.SetCursorPosition(element.localisation.x, element.localisation.y);
-                Console.ForegroundColor = element.color;
-                Console.WriteLine("o");
-            }
+            
         }
         public void generateListOfMovingObj(int numberOfObjects)
         {

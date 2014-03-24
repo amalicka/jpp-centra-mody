@@ -59,6 +59,8 @@ namespace Centra_mody_JPP
                 {
                     myBoard.modifyListOfMovingObj(swMain.Elapsed);
                     swMovingObjects.Reset();
+                    myBoard.centrumMody1.move( myRandom.Next(1000));
+                    myBoard.centrumMody2.move( myRandom.Next(1000));
                 }
 
                 // Render scene
